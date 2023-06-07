@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def morse_code_method
   { 'a' => '.-', 'b' => '-...', 'c' => '-.-.', 'd' => '-..', 'e' => '.', 'f' => '..-.', 'g' => '--.',
     'h' => '....', 'i' => '..', 'j' => '.---', 'k' => '-.-', 'l' => '.-..', 'm' => '--', 'n' => '-.',
@@ -10,7 +8,7 @@ end
 def split_words(words_array)
   code_decoded = ''
   words_array.each do |word|
-    letters_array = word.split(' ')
+    letters_array = word.split()
     letters_array.each do |letter|
       code_decoded += morse_code_method.key(letter).to_s
     end
