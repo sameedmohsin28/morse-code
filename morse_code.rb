@@ -1,32 +1,27 @@
+# frozen_string_literal: true
+
 def morse_code_method
-  morse_code_symbols_hash = { "a"=>".-", "b"=>"-...", "c"=>"-.-.", "d"=>"-..", "e"=>".", "f"=>"..-.", "g"=>"--.",
-    "h"=>"....", "i"=>"..", "j"=>".---", "k"=>"-.-", "l"=>".-..", "m"=>"--", "n"=>"-.", "o"=>"---", "p"=>".--.",
-    "q"=>"--.-", "r"=>".-.", "s"=>"...", "t"=>"-", "u"=>"..-", "v"=>"...-", "w"=>".--", "x"=>"-..-", "y"=>"-.--",
-    "z"=>"--.." }
+  { 'a' => '.-', 'b' => '-...', 'c' => '-.-.', 'd' => '-..', 'e' => '.', 'f' => '..-.', 'g' => '--.',
+    'h' => '....', 'i' => '..', 'j' => '.---', 'k' => '-.-', 'l' => '.-..', 'm' => '--', 'n' => '-.',
+    'o' => '---', 'p' => '.--.', 'q' => '--.-', 'r' => '.-.', 's' => '...', 't' => '-', 'u' => '..-',
+    'v' => '...-', 'w' => '.--', 'x' => '-..-', 'y' => '-.--', 'z' => '--..' }
 end
 
-def morse_code_decoder(message)
-  morse_code_symbols = morse_code_method
-  spaces = ""
-  single_alphabet = ""
-  code_decoded = ""
-
-  message.each_char do |character|
-    if character == " "
-      abc = morse_code_symbols.key(single_alphabet).to_s
-      code_decoded += abc
-      single_alphabet = ""
-      spaces += character
-      if spaces == "   "
-        code_decoded += " "
-        spaces = ""
-      end
-    else
-      spaces = ""
-      single_alphabet += character
+def split_words(words_array)
+  code_decoded = ''
+  words_array.each do |word|
+    letters_array = word.split(' ')
+    letters_array.each do |letter|
+      code_decoded += morse_code_method.key(letter).to_s
     end
+    code_decoded += ' '
   end
-  return code_decoded
+  code_decoded.strip
 end
 
-print morse_code_decoder('.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...')
+def split_sentence(message)
+  words = message.split('   ')
+  split_words(words)
+end
+
+print split_sentence('.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...')
