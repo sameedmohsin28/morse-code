@@ -8,7 +8,7 @@ end
 def split_words(words_array)
   code_decoded = ''
   words_array.each do |word|
-    letters_array = word.split()
+    letters_array = word.split
     letters_array.each do |letter|
       code_decoded += morse_code_method.key(letter).to_s
     end
